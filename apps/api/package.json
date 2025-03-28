@@ -3,6 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "main": "./dist/main.js",
+  "dependencies": {
+    "@fastify/autoload": "~6.0.3",
+    "@fastify/sensible": "~6.0.2",
+    "axios": "^1.6.0",
+    "fastify": "~5.2.1",
+    "fastify-plugin": "~5.0.1"
+  },
   "nx": {
     "name": "api",
     "targets": {
@@ -68,11 +75,23 @@
           "passWithNoTests": true
         }
       },
-      "docker-build": {
+      "gen-lockfile": {
         "dependsOn": [
           "build"
         ],
+        "command": "node tools/lockfile.mjs apps/api"
+      },
+      "docker-build": {
+        "dependsOn": [
+          "gen-lockfile"
+        ],
         "command": "docker build -f apps/api/Dockerfile . -t localhost:5001/api"
+      },
+      "docker-run": {
+        "dependsOn": [
+          "docker-build"
+        ],
+        "command": "docker run -p 3000:3000 localhost:5001/api"
       },
       "docker-push": {
         "dependsOn": ["docker-build"],

@@ -27,6 +27,9 @@ importers:
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.23.0
+      '@nx/devkit':
+        specifier: 20.6.4
+        version: 20.6.4(nx@20.6.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.15)))
       '@nx/esbuild':
         specifier: 20.6.4
         version: 20.6.4(@babel/traverse@7.27.0)(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.15))(esbuild@0.19.12)(nx@20.6.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.15)))
@@ -103,7 +106,23 @@ importers:
         specifier: ^8.19.0
         version: 8.28.0(eslint@9.23.0)(typescript@5.7.3)
 
-  apps/api: {}
+  apps/api:
+    dependencies:
+      '@fastify/autoload':
+        specifier: ~6.0.3
+        version: 6.0.3
+      '@fastify/sensible':
+        specifier: ~6.0.2
+        version: 6.0.3
+      axios:
+        specifier: ^1.6.0
+        version: 1.8.4
+      fastify:
+        specifier: ~5.2.1
+        version: 5.2.2
+      fastify-plugin:
+        specifier: ~5.0.1
+        version: 5.0.1
 
   apps/api-e2e: {}
 
