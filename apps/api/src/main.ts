@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import { app } from './app/app';
+import { util } from '@node-acme/util';
 
 const host = process.env.HOST ?? 'localhost';
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
@@ -18,6 +19,7 @@ server.listen({ port, host }, (err) => {
     server.log.error(err);
     process.exit(1);
   } else {
+    console.log(util());
     console.log(`[ ready ] http://${host}:${port}`);
   }
 });
