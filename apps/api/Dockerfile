@@ -8,16 +8,20 @@ FROM node:22-slim
 
 ENV HOST=0.0.0.0
 ENV PORT=3000
+ENV NODE_PATH=/app/api/dist/workspace_modules
 
 RUN corepack enable
 
 WORKDIR /app
 
 COPY apps/api api/
+COPY apps/api/dist/package.json api/package.json
 
 # You can remove this install step if you build with `--bundle` option.
 # The bundled output will include external dependencies.
 RUN pnpm --prefix api -f install
+
+STOPSIGNAL SIGINT
 
 EXPOSE 3000
 

@@ -9,7 +9,8 @@
     "@node-acme/util": "workspace:",
     "axios": "^1.6.0",
     "fastify": "~5.2.1",
-    "fastify-plugin": "~5.0.1"
+    "fastify-plugin": "~5.0.1",
+    "tslib": "~2.6.2"
   },
   "nx": {
     "name": "api",
@@ -76,6 +77,12 @@
           "passWithNoTests": true
         }
       },
+      "gen-package-json": {
+        "dependsOn": [
+          "build"
+        ],
+        "command": "node tools/prepare-dist.mjs apps/api"
+      },
       "gen-lockfile": {
         "dependsOn": [
           "build"
@@ -84,6 +91,7 @@
       },
       "docker-build": {
         "dependsOn": [
+          "gen-package-json",
           "gen-lockfile"
         ],
         "command": "docker build -f apps/api/Dockerfile . -t localhost:5001/api"
