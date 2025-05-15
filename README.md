@@ -1,6 +1,6 @@
 # node-acme
 
-This is an example of how lockfile handling can be done with a Node backend server and the new TypeScript solution setup.
+This is an example of how workspace libs and lockfile handling can be done with a Node backend server and the new TypeScript solution setup.
 
 A Docker build, run, and push setup is also included.
 
